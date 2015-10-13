@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Ejercicio AngularJS 001</title>
+	<link type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+	<style>
+		.resaltado-amarillo {
+			background-color: yellow;
+		}
+
+		.resaltado-rosa { 
+			background-color: pink;
+		}
+
+		.resaltado-verde {
+	 		background-color : lightgreen;
+	 	}
+
+		.resaltado-azul {
+	 		background-color : lightblue;
+	 	}
+
+		.resaltado-violeta {
+	 		background-color : violet;
+	 	}
+
+		.resaltado-naranja {
+	 		background-color : orange;
+	 	}
+	</style>
+</head>
+<body ng-app="app">
+	<div class="container">
+		<div class="page-header">
+  			<h1>AngularJS: Ejercicio 001 <small>Repaso de conceptos elementales</small></h1>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Primera aplicación con AngularJS
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12 col-md-6">
+						<pre><code ng-non-bindable>&lt;!-- index.html --&gt;
+&lt;html <span class="resaltado-verde">ng-app="app"</span>&gt;
+  &lt;head&gt;
+    &lt;script <span class="resaltado-amarillo">src="angular.js"</span>&gt;&lt;/script&gt;
+    &lt;script <span class="resaltado-azul">src="script.js"</span>&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body <span class="resaltado-violeta">ng-controller="PruebaController"</span>&gt;
+    &lt;h1&gt;<span class="resaltado-naranja">{{mensaje}}</span>&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+					</div>
+					<div class="col-xs-12 col-md-6">
+						<ul>
+							<li><strong class="resaltado-verde">ng-app</strong> Esta directiva asocia el DOM con nuestra aplicación de AngularJS, cuyo módulo principal se llama "app". No tiene que estar obligatoriamente en la etiqueta html, puede estar en otra de nivel inferior.</li>
+							<li><strong class="resaltado-amarillo">angular.js</strong> Es el script principal de AngularJS.</li>
+							<li><strong class="resaltado-azul">script.js</strong> Contiene el código de la aplicación AngularJS. El contenido se muestra más abajo.</li>
+							<li><strong class="resaltado-violeta">ng-controller="PruebaController"</strong> Esta directiva asocia la etiqueta que la lleva y su contenido al controlador "PruebaController".</li>
+							<li><strong class="resaltado-naranja" ng-non-bindable>{{mensaje}}</strong> Las instrucciones entre dobles llaves son evaluadas por Angular y reemplazadas por el resultado de dicha evaluación.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-6">
+						<pre><code ng-non-bindable>// script.js
+<span class="resaltado-verde">var app=angular.module("app",[]);</span>
+  
+<span class="resaltado-amarillo">app.controller("PruebaController", ['$scope', function($scope) {</span>
+  <span class="resaltado-azul">$scope.mensaje="Hola Mundo";</span>
+}]);
+</code></pre>
+					</div>
+					<div class="col-xs-12 col-md-6">
+						<ul>
+							<li><strong class="resaltado-verde">Método module:</strong> sirve para declarar el módulo, la aplicación AngularJS con la que vamos a trabajar. El primer parámetro es el nombre del módulo, que debe coincidir con el que pasamos a la directiva ng-app. El segundo es el array de inyección de dependencias.</li>
+							<li><strong class="resaltado-amarillo">Método controller:</strong> sirve para declarar un controlador dentro del módulo. Recibe como primer parámetro el nombre del módulo, que debe ser el mismo que el que le pasamos a la directiva <code>ng-controller</code> en el marcado con el que se asocia. El segundo parámetro es el array de inyección de dependencias, que incluye la variable <code>$scope</code> que representa el ámbito del controlador y almacena las variables y funciones locales del controlador que pueden enlazarse con el marcado mediante expresiones y directivas.</li>
+							<li><strong class="resaltado-azul">Variable del ámbito de un controlador:</strong> Aquí vemos la declaración/asignación de una variable dentro del ámbito (<code>$scope</code>) del controlador.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default" ng-controller="ExpresionesController">
+			<div class="panel-heading">
+				Uso de expresiones y filtros
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th class="col-xs-5">Expresión</th>
+							<th class="col-xs-2">Salida</th>
+							<th class="col-xs-5">Comentario</th>
+						</tr>
+					<thead>
+					<tbody>
+						<tr>
+							<td><code ng-non-bindable>2 + 3 = {{ 2 + 3 }}</code></td>
+							<td>2 + 3 = {{ 2 + 3 }}</td>
+							<td>Las expresiones entre dobles llaves son evaluadas y reemplazadas por su resultado.</td>
+						</tr>
+						<tr>
+							<td><code ng-non-bindable>{{ 'AngularJS' | uppercase }}</code></td>
+							<td>{{ 'AngularJS' | uppercase }}</td>
+							<td>Pueden aplicarse filtros de formato a las expresiones.</td>
+						</tr>
+						<tr>
+							<td><code ng-non-bindable>{{ 987.654321 | number:2 }}</code></td>
+							<td>{{ 987.654321 | number:2 }}</td>
+							<td>Ejemplo de filtro numérico</td>
+						</tr>
+						<tr>
+							<td><code ng-non-bindable>{{ 35.22343 | currency }}</code></td>
+							<td>{{ 35.22343 | currency }}</td>
+							<td>Algunos filtros aplican la configuración local, que se establece enlazando scripts específicos de la región como "angular-locale_es-es.js" </td>
+						</tr>
+						<tr>
+							<td><code ng-non-bindable>{{ fecha | date }}</code></td>
+							<td>{{ fecha | date }}</td>
+							<td>Esta expresión utiliza una variable del ámbito del controlador. Al igual que la anterior depende del script locale. </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Uso de directiva ng-model para enlazar un input con el contenido de una etiqueta HTML
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12 col-md-4">
+					<input name="txtNombre" type="text" ng-model="nombre" placeholder="Introduce tu nombre"/>
+					<p>Bienvenido a AngularJS, {{nombre}}</p>
+					<p>Bienvenido a AngularJS, <span ng-bind="nombre"></span></p>
+				</div>
+				<div class="col-xs-12 col-md-8">
+					<pre><span ng-non-bindable>&lt;input name="txtNombre" type="text" ng-model="nombre"/&gt;
+Bienvenido a AngularJS, {{nombre}}
+Bienvenido a AngularJS, &lt;span ng-bind="nombre"&gt;&lt;/span&gt;</span></pre>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<script src="../node_modules/angular/angular.min.js"></script>
+	<script src="../node_modules/angular-i18n/angular-locale_es-es.js"></script>
+	<script src="repaso.js"></script>
+	<!-- Fin Scripts -->
+</body>
+</html>

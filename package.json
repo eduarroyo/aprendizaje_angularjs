@@ -1,15 +1,15 @@
 {
-  "name": "AngularJS",
-  "version": "0.0.0",
+  "name": "aprendizajeangularjs",
+  "version": "0.0.1",
   "description": "Aprendizaje de AngularJS",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "aprendizaje-angularjs"
+    "url": "https://github.com/eduarroyo/aprendizaje_angularjs.git"
   },
   "author": "Eduardo Arroyo Ramirez",
-  "license": "ISC"
+  "dependencies": {
+    "bootstrap": ">=3.3.5",
+    "angular": ">=1.4.7",
+    "angular-i18n": ">=1.4.7"
+  }
 }

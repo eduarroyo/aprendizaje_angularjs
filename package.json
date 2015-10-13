@@ -1,0 +1,15 @@
+{
+  "name": "AngularJS",
+  "version": "0.0.0",
+  "description": "Aprendizaje de AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "aprendizaje-angularjs"
+  },
+  "author": "Eduardo Arroyo Ramirez",
+  "license": "ISC"
+}
